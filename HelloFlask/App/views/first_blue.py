@@ -32,4 +32,4 @@ def add_user():
     # models.session.add(user)
     # models.session.commit()
 
-    return '创建成功'
+    return '增加创建成功'
