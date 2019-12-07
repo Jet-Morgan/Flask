@@ -22,6 +22,8 @@ class   Config:
 
     SECRET_KEY = "Rock"
 
+    SESSION_TYPE = "redis"
+
 
 class DevelopConfig(Config):
 

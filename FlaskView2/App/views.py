@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*
+import sys
+from imp import reload
+reload(sys)
+sys.setdefaultencoding('utf8')
 from flask import Blueprint, request, render_template, make_response, Response, abort, session
 
 blue = Blueprint('blue', __name__)
@@ -10,7 +14,7 @@ def init_blue(app):
 
 @blue.route('/')
 def index():
-    return "Index"
+    return render_template('index.html')
 
 
 @blue.route('/sendrequest/', methods=["GET", "POST", "DELETE", "PUT", "PATCH"])
@@ -94,3 +98,25 @@ def mine():
     print(type(session))
 
     return '欢迎回来:%s' % username
+
+
+@blue.route('/students/')
+def students():
+
+    student_list = ["小明 %d" % i for i in range(10)]
+
+    return render_template('Students.html' , student_list=student_list, a=5, b=5)
+
+
+@blue.route('/userregister/')
+def user_register():
+    return render_template('user/user_register.html', title="用户注册")
+
+
+@blue.route('/userregister2/')
+def user_register2():
+
+    users = ["小白用户%d" % i for i in range(10)]
+
+    return render_template('user/user_register2.html', title="注册页面2", users=users, msg = "hello")
+
